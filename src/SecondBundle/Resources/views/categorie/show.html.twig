@@ -1,0 +1,48 @@
+{% extends 'back.html.twig' %}
+{% block nav %}
+    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+        <div class="container-fluid">
+            <h1 class="card-title align-content-center">afficher categorie</h1>
+
+        </div></div>
+
+{% endblock nav %}
+
+{% block body %}
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 col-md-offset-7">
+                    <h2>Evenement</h2>
+<center>
+
+                    <table id="example" class="table table-striped table-bordered" style="width:100%">
+                        <tbody>
+                        <tr>
+                            <th>Id</th>
+                            <td>{{ categorie.id  }}</td>
+                        </tr>
+                        <tr>
+                            <th>Libelle</th>
+                            <td>{{categorie.libelle }}</td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+
+
+
+                    <ul>
+                        <li>
+                            {{ form_start(delete_form) }}
+                           <input class="btn btn-danger" type="submit" value="supprimer">
+                            {{ form_end(delete_form) }}
+                        </li>
+                    </ul>
+
+            </div>
+        </div>
+        </div>
+
+    </center>
+{% endblock %}

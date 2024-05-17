@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+
+       <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
+        <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+        <link href="{{ asset('plugins/revolution/css/settings.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('plugins/revolution/css/layers.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('plugins/revolution/css/navigation.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/responsive.css') }}" rel="stylesheet">
+
+    {% endblock stylesheets %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+    {% block javascripts %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+
+        <script type="text/javascript" src='{{asset('test-credentials.js')}}'></script>
+        <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+        <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+        <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+        <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+{% endblock javascripts %}
+</head>
+<body>
+
+<div class="page-wrapper">
+    <!-- Preloader -->
+    <div class="preloader"></div>
+
+    <header class="main-header header-style-two">
+        <!-- Header Top -->
+        <div class="header-top">
+            <div class="auto-container">
+                <div class="clearfix">
+                    <div class="top-left">
+                        <ul class="info-list clearfix">
+                            <li><a href="tel:6668880000"><span class="fa fa-phone-square"></span> +216 51 000 000</a></li>
+                            <li><a href="mailto:info@bebio.com"><span class="fa fa-envelope"></span>info@kinderg.com</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="top-right">
+                        <!-- link Box -->
+                        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                            <div class="link-box"><a href="{{ path('parents_edit',{'id':app.user.id}) }}">Profile</a></div>
+                            <div class="link-box"><a href="{{ path('fos_user_security_logout') }}">Logout</a></div>
+                        {% else %}
+                            <div class="link-box"><a href="{{ path('parents_new') }}">S'inscrire</a></div>
+                            <div class="link-box"><a href="{{ path('user_login') }}">Login</a></div>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header Top -->
+
+        <!-- Header Upper -->
+        <div class="header-lower">
+            <div class="auto-container clearfix">
+                <!--Info-->
+                <div class="logo-outer">
+                    <div class="logo"><a href="{{ path('homepage') }}"><img src="{{ asset('images/kgpng.png') }}" style="width:150px;height:50px" alt="" title=""></a></div>
+                </div>
+
+                <!--Nav Box-->
+                <div class="nav-outer clearfix">
+                    <!-- Main Menu -->
+                    <nav class="main-menu navbar-expand-md navbar-light">
+                        <div class="navbar-header">
+                            <!-- Togg le Button -->
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="icon flaticon-menu-button"></span>
+                            </button>
+                        </div>
+
+                        <div class="collapse navbar-collapse clearfix" id="navbarSupportedContent">
+                            <ul class="navigation clearfix">
+                                <li class="current "><a href="{{ path('homepage') }}">Accueil</a>
+                                    <!--<ul>
+                                        <li><a href="index-2.html">Home page 01</a></li>
+                                        <li><a href="index-3.html">Home page 02</a></li>
+                                        <li class="dropdown"><a href="index-2.html">Header Styles</a>
+                                            <ul>
+                                                <li><a href="index-2.html">Header Style One</a></li>
+                                                <li><a href="index-3.html">Header Style Two</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>-->
+                                </li>
+                                <li><a href="{{ path('aboutus') }}">A propos</a></li>
+
+                                <li class=""><a href="{{ path('evenements') }}">Evenements</a>
+                                   <!-- <ul>
+                                        <li><a href="events.html">Events</a></li>
+                                        <li><a href="event-detail.html">Event Detail</a></li>
+                                    </ul>-->
+                                </li>
+                                <li class=""><a href="{{path('activite_index')}}">Activite</a>
+                                   <!-- <ul>
+                                        <li><a href="numbers-matching.html">Numbers Matching</a></li>
+                                        <li><a href="paper-plates-art.html">Paper Plates Art</a></li>
+                                        <li><a href="create-cartoon-egg.html">Create Egg Cartoon</a></li>
+                                        <li><a href="cooking-fun-cake.html">Cooking Fun Cake</a></li>
+                                        <li><a href="super-colors-game.html">Super Colors Game</a></li>
+                                        <li><a href="learning-disciplines.html">Learning Disciplines</a></li>
+                                    </ul>-->
+                                </li>
+                                <li><a href="{{path('jardin_index')}}">Nos Jardins</a></li>
+                                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') and  "ROLE_PARENT" in app.user.roles %}
+                                <li class="dropdown"><a href="{{ path('enfant_index') }}">Enfant</a>
+                                    <ul>
+
+                                        <li><a href="{{path('remarque_index')}}">Remarques</a></li>
+                                        <li><a href="{{ path('abonnement_index') }}">Abonnement</a></li>
+                                        <li><a href="{{ path('sendmsg') }}">Contacer jardin </a></li>
+                                    </ul>
+                                </li>
+                                {% else %}
+                                <li class=""><a href="{{ path('jardin_new') }}">rejoindre</a>
+                                   <!-- <ul>
+                                        <li><a href="news.html">Our News</a></li>
+                                        <li><a href="news-single.html">News Single</a></li>
+                                    </ul>-->
+                                </li>{% endif %}
+                                <li><a href="{{path('reclamation_new')}}">Contact</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <!-- Main Menu End-->
+
+                    <!-- Main Menu End-->
+                    <div class="outer-box clearfix">
+                        <ul class="social-icon-colored">
+                            <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
+
+                            <li><a href="#"><span class="fab fa-instagram"></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Header Upper-->
+
+        <!-- Sticky Header  -->
+        <div class="sticky-header">
+            <div class="auto-container clearfix">
+                <!--Logo-->
+                <div class="logo pull-left">
+                    <a href="{{ path('homepage') }}" title=""><img src="{{ asset('images/kgpng.png') }}" style="width:120px;height:50px"alt="" title=""></a>
+                </div>
+                <!--Right Col-->
+                <div class="pull-right">
+                    <!-- Main Menu -->
+                    <nav class="main-menu">
+                        <div class="navbar-collapse show collapse clearfix">
+                            <ul class="navigation clearfix">
+                                <li class="current "><a href="{{ path('homepage') }}">Accueil</a>
+                                   <!-- <ul>
+                                        <li><a href="index-2.html">Home page 01</a></li>
+                                        <li><a href="index-3.html">Home page 02</a></li>
+                                        <li class="dropdown"><a href="index-2.html">Header Styles</a>
+                                            <ul>
+                                                <li><a href="index-2.html">Header Style One</a></li>
+                                                <li><a href="index-3.html">Header Style Two</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>-->
+                                </li>
+                                <li><a href="{{ path('aboutus') }}">A propos</a></li>
+                                <li class=""><a href="{{ path('evenements') }}">Evenements</a>
+                                  <!--  <ul>
+                                        <li><a href="events.html">Events</a></li>
+                                        <li><a href="event-detail.html">Event Detail</a></li>
+                                    </ul>-->
+                                </li>
+                                <li class=""><a href="{{path('activite_index')}}">Activite</a>
+                                   <!-- <ul>
+                                        <li><a href="numbers-matching.html">Numbers Matching</a></li>
+                                        <li><a href="paper-plates-art.html">Paper Plates Art</a></li>
+                                        <li><a href="create-cartoon-egg.html">Create Egg Cartoon</a></li>
+                                        <li><a href="cooking-fun-cake.html">Cooking Fun Cake</a></li>
+                                        <li><a href="super-colors-game.html">Super Colors Game</a></li>
+                                        <li><a href="learning-disciplines.html">Learning Disciplines</a></li>
+                                    </ul>-->
+                                </li>
+                                <li><a href="{{path('jardin_index')}}">Nos Jardins</a></li>
+
+                                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') and  "ROLE_PARENT" in app.user.roles %}
+                                <li class="dropdown"><a href="{{ path('enfant_index') }}">Enfant</a>
+                                     <ul>
+                                         <li><a href="{{path('remarque_index')}}">Remarques</a></li>
+                                         <li><a href="{{ path('abonnement_index') }}">Abonnement</a></li>
+                                         <li><a href="{{ path('messages_index') }}">Contacer jardin </a></li>
+                                     </ul>
+                                </li>
+                                {% else %}
+                                <li class=""><a href="{{ path('jardin_new') }}">rejoindre</a>
+                                   <!-- <ul>
+                                        <li><a href="news.html">Our News</a></li>
+                                        <li><a href="news-single.html">News Single</a></li>
+                                    </ul>-->
+                                </li>
+                                {% endif %}
+                                <li><a href="{{path('reclamation_new')}}">Contact</a></li>
+                            </ul>
+                        </div>
+                    </nav><!-- Main Menu End-->
+                </div>
+            </div>
+        </div><!-- End Sticky Menu -->
+    </header>
+    <!-- End Main Header -->
+    {% block body %}
+
+
+        <!--End Main Slider-->
+
+
+
+
+
+
+    {% endblock body %}
+
+    <!--Main Footer-->
+    <footer class="main-footer">
+        <div class="anim-icons">
+            <span class="icon icon-sparrow wow zoomIn" data-wow-delay="400ms"></span>
+            <span class="icon icon-rainbow-2 wow zoomIn" data-wow-delay="800ms"></span>
+            <span class="icon icon-star-3"></span>
+            <span class="icon icon-star-3 two"></span>
+            <span class="icon icon-sun"></span>
+            <span class="icon icon-plane wow zoomIn" data-wow-delay="1200ms"></span>
+        </div>
+
+        <!--Scroll to top-->
+        <div class="scroll-to-top scroll-to-target" data-target="html"><span class="icon icon-arrow-up"></span></div>
+
+        <!--footer upper-->
+        <div class="footer-upper">
+            <div class="auto-container">
+                <div class="row clearfix">
+                    <!--Big Column-->
+                    <div class="big-column col-xl-5 col-lg-12 col-md-12 col-sm-12">
+                        <div class="row clearfix">
+
+                            <!--Footer Column-->
+                            <div class="footer-column col-lg-6 col-md-6 col-sm-12">
+                                <div class="footer-widget logo-widget">
+                                    <div class="logo">
+                                        <a href="index-2.html"><img src="{{ asset('images/kinderwhite.png') }}" alt="" /></a>
+                                    </div>
+                                    <div class="text">Votre guide de jardins d'enfants.</div>
+
+                                </div>
+                            </div>
+
+                            <!--Footer Column-->
+                            <div class="footer-column col-lg-5 col-md-6 col-sm-12">
+                                <div class="footer-widget contact-widget">
+                                    <h4 class="widget-title">Contact</h4>
+                                    <div class="widget-content">
+                                        <ul class="contact-info">
+                                            <li><a href="tel:6668880000"><span class="fa fa-phone-square"></span>+216 71 000 000</a></li>
+                                            <li><a href="mailto:info@bebio.com"><span class="fa fa-envelope"></span>KinderG@gmail.com</a></li>
+                                            <li><span class="fa fa-map"></span> El ghazela,Tunis</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Big Column-->
+                    <div class="big-column col-xl-7 col-lg-12 col-md-12 col-sm-12">
+                        <div class="row clearfix">
+                            <!--Footer Column-->
+                            <div class="footer-column col-xl-3 col-lg-3 col-md-6 col-sm-4">
+                                <div class="footer-widget links-widget">
+                                    <h4 class="widget-title">Links</h4>
+                                    <div class="widget-content">
+                                        <ul class="list">
+                                            <li><a href="{{ path('aboutus') }}">A Propos</a></li>
+                                            <li><a href="#{{ path('reclamation_new') }}">Contact</a></li>
+                                            <li><a href="{{ path('jardin_new') }}">rejoindre</a></li>
+                                            <li><a href="{{path('activite_index')}}">Activite</a></li>
+                                            <li><a href="{{ path('evenement_index') }}">Evenements</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Footer Column-->
+                            <div class="footer-column col-xl-4 col-lg-3 col-md-6 col-sm-12">
+                                <div class="footer-widget activites-widget">
+                                    <h4 class="widget-title">Activities</h4>
+                                    <div class="widget-content">
+                                        <ul class="list">
+                                            <li><a href="#">Table/Floor Toys</a></li>
+                                            <li><a href="#">Outdoor Games</a></li>
+                                            <li><a href="#">Sand Play</a></li>
+                                            <li><a href="#">Play Dough</a></li>
+                                            <li><a href="#">Building Blocks</a></li>
+                                            <li><a href="#">Water Play</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Footer Column-->
+                            <div class="footer-column col-xl-5 col-lg-6 col-md-12 col-sm-12">
+                                <div class="footer-widget newsletter-widget">
+                                    <h4 class="widget-title">Newsletter</h4>
+                                    <div class="newsletter-form">
+                                        <form method="post" action="">
+                                            <div class="form-group">
+                                                <input type="email" name="email" value="" placeholder="Enter Your Email" required="">
+                                                <button type="submit" class="theme-btn btn-style-one">Subscribe</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Footer Bottom-->
+        <div class="footer-bottom">
+            <div class="auto-container">
+                <ul class="social-icon-colored">
+                    <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
+                    <li><a href="#"><span class="fab fa-twitter"></span></a></li>
+                    <li><a href="#"><span class="fab fa-youtube"></span></a></li>
+                </ul>
+                <div class="copyright"> Copyrights &copy; 2020 Esprit</div>
+            </div>
+        </div>
+    </footer>
+    <!--End Main Footer-->
+
+</div>
+<!--End pagewrapper-->
+
+
+<!--Search Popup-->
+<!--
+<div id="search-popup" class="search-popup">
+    <div class="close-search theme-btn"><span class="fa fa-times"></span></div>
+    <div class="popup-inner">
+        <div class="overlay-layer"></div>
+        <div class="search-form">
+            <form method="post" action="http://t.commonsupport.xyz/bebio/index.html">
+                <div class="form-group">
+                    <fieldset>
+                        <input type="search" class="form-control" name="search-input" value="" placeholder="Search Here" required >
+                        <input type="submit" value="Search Now!" class="theme-btn">
+                    </fieldset>
+                </div>
+            </form>
+
+            <br>
+            <h3>Recent Search Keywords</h3>
+            <ul class="recent-searches">
+                <li><a href="#">Business</a></li>
+                <li><a href="#">Web Development</a></li>
+                <li><a href="#">SEO</a></li>
+                <li><a href="#">Logistics</a></li>
+                <li><a href="#">Freedom</a></li>
+            </ul>
+
+        </div>
+
+    </div>
+</div>
+-->
+<script src="{{ asset('js/jquery.js') }}"></script>
+<script src="{{ asset('js/popper.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
+<!--Revolution Slider-->
+<script src="{{ asset('plugins/revolution/js/jquery.themepunch.revolution.min.js') }}"></script>
+<script src="{{ asset('plugins/revolution/js/jquery.themepunch.tools.min.js') }}"></script>
+<script src="{{ asset('plugins/revolution/js/extensions/revolution.extension.actions.min.js') }}"></script>
+<script src="{{ asset('plugins/revolution/js/extensions/revolution.extension.carousel.min.js') }}"></script>
+<script src="{{ asset('plugins/revolution/js/extensions/revolution.extension.kenburn.min.js') }}"></script>
+<script src="{{ asset('plugins/revolution/js/extensions/revolution.extension.layeranimation.min.js') }}"></script>
+<script src="{{ asset('plugins/revolution/js/extensions/revolution.extension.migration.min.js') }}"></script>
+<script src="{{ asset('plugins/revolution/js/extensions/revolution.extension.navigation.min.js') }}"></script>
+<script src="{{ asset('plugins/revolution/js/extensions/revolution.extension.parallax.min.js') }}"></script>
+<script src="{{ asset('plugins/revolution/js/extensions/revolution.extension.slideanims.min.js') }}"></script>
+<script src="{{ asset('plugins/revolution/js/extensions/revolution.extension.video.min.js') }}"></script>
+<script src="{{ asset('js/main-slider-script.js') }}"></script>
+<script src="{{ asset('js/jquery-ui.js') }}"></script>
+<script src="{{ asset('js/jquery.fancybox.js') }}"></script>
+<script src="{{ asset('js/owl.js') }}"></script>
+<script src="{{ asset('js/jquery.countdown.js') }}"></script>
+<script src="{{ asset('js/wow.js') }}"></script>
+<script src="{{ asset('js/appear.js') }}"></script>
+<script src="{{ asset('js/parallax.min.js') }}"></script>
+<script src="{{ asset('js/script.js') }}"></script>
+
+</body>

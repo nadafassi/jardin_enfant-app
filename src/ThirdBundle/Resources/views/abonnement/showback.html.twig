@@ -1,0 +1,61 @@
+{% extends 'back.html.twig' %}
+
+{% block nav %}
+    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+        <div class="container-fluid">
+            <center><h1>Details abonnement</h1></center>
+
+        </div></div>
+
+{% endblock nav %}
+
+{% block body %}
+    <center>
+        <h1>Détails Abonnement</h1>
+
+        <table id="example" class="table table-striped table-bordered" style="width:20%">
+            <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ abonnement.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{% if abonnement.date %}{{ abonnement.date|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ abonnement.type }}</td>
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td>{{ abonnement.etat }}</td>
+            </tr>
+            <tr>
+                <th>Montant</th>
+                <td>{{ abonnement.montant }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <ul>
+
+            <li>
+
+
+
+                {{ form_start(delete_form) }}
+
+                <input class="btn btn-danger" type="submit" value="Delete">
+
+                {{ form_end(delete_form) }}
+              <br>
+            <li>
+                <a href="{{ path('abonnements_index') }}">Back to the list</a>
+            </li>
+        </ul>
+    </center>
+
+
+
+{% endblock body %}

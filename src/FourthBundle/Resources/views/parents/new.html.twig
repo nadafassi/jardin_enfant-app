@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+
+    <section class="contact-form-section">
+        <div class="auto-container">
+            <div class="contact-form">
+                <div class="sec-title text-center">
+                    <span class="title">Créer Votre Compte</span>
+                    <h2>Entrez Vos Informations</h2>
+                </div>
+                {{ form_start(form) }}
+
+                    <div class="row">
+                        <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                            {{ form_widget(form.nom,{ 'attr': {'placeholder': 'nom'} })}}
+                        </div>
+
+                        <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                            {{ form_widget(form.prenom,{ 'attr': {'placeholder': 'prenom'} }) }}
+                        </div>
+
+                        <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                            {{ form_widget(form.numtel,{ 'attr': {'placeholder': 'numéro'} }) }}
+                        </div>
+
+                        <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                            {{ form_widget(form.adresse,{ 'attr': {'placeholder': 'adresse'} }) }}
+                        </div>
+                        <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                            {{ form_widget(form.username,{ 'attr': {'placeholder': 'username'} }) }}
+                        </div>
+
+                        <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                            {{ form_widget(form.email,{ 'attr': {'placeholder': 'email'} }) }}
+                        </div>
+
+                        <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                            {{ form_widget(form.plainPassword.first,{ 'attr': {'placeholder': 'password'} }) }}
+                        </div>
+
+                        <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                            {{ form_widget(form.plainPassword.second,{ 'attr': {'placeholder': 'password'} }) }}
+                        </div>
+                        <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                            {{ form_widget(form.sexe) }}
+                        </div>
+
+                        <div class="form-group col-lg-12 col-md-12 col-sm-12 text-center">
+                            <button class="theme-btn btn-style-one" type="submit" name="submit-form">s'inscrire</button>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+{% endblock %}

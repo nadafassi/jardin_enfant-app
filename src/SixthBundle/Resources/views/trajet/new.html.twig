@@ -1,0 +1,41 @@
+{% extends 'back.html.twig' %}
+
+{% block nav %}
+    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+        <div class="container-fluid">
+            <center>    <h1>Ajouter un trajet</h1></center>
+        </div></div>
+{% endblock nav %}
+
+{% block body %}
+<br>
+<center>
+
+    <br>
+    <div class="col-md-6 grid-margin stretch-card" bis_skin_checked="1">
+        <div class="card" bis_skin_checked="1">
+            <div class="card-body" bis_skin_checked="1">
+                <form class="form-sample" method="post">
+                    <div class="form-group" bis_skin_checked="1">
+                        <label  for="exampleInputName1">Adresse</label>
+                        {{ form_widget(form.adresse,{'attr': {'class': 'form-control '}})}}
+                    </div>
+                    <div class="form-group" bis_skin_checked="1">
+                        <label  for="exampleInputName1">Heure</label>
+                        {{ form_widget(form.heure,{'attr': {'class': 'form-control '}})}}
+                    </div>
+                    <div class="form-group" bis_skin_checked="1">
+                        <label  for="exampleInputName1">Chauffeur</label>
+                        {{ form_widget(form.chauffeur,{'attr': {'class': 'form-control '}})}}
+                    </div>
+
+                    <button type="submit" class="btn btn-success mr-2">Ajouter</button>
+                    <a class="btn btn-light" href="{{ path('trajet_index') }}">Revenir à la map</a>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</center>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <center>
+    <h1>Détails enfant</h1>
+
+    <table id="example" class="table table-striped table-bordered" style="width:20%">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ enfant.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ enfant.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ enfant.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Datenaiss</th>
+                <td>{% if enfant.datenaiss %}{{ enfant.datenaiss|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Sexe</th>
+                <td>{{ enfant.sexe }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+
+        <li>
+
+
+
+            {{ form_start(delete_form) }}
+            <a class="btn btn-primary"  href="{{ path('enfant_edit', { 'id': enfant.id }) }}">Edit</a>
+                <input type="submit" class="btn btn-danger"  value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+
+        <li>
+            <a class="alert-primary" href="{{ path('enfant_index') }}">Back to the list</a>
+        </li>
+    </ul>
+    <br>
+</center>
+{% endblock %}

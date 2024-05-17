@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<center>
+    <h1 style="color: tomato">Jardin {{ jardin.name }} </h1>
+
+
+    <table id="example" class="table table-striped table-bordered" style="width:20%">
+        <tbody>
+
+            <tr>
+
+                <th>Name</th>
+                <td>{{ jardin.name }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ jardin.description }}</td>
+            </tr>
+            <tr>
+                <th>Tarif</th>
+                <td>{{ jardin.tarif }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ jardin.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td>{{ jardin.etat }}</td>
+            </tr>
+            <tr>
+                <th>Photo</th><td> <img src="{{ asset('images/jardin.jpg') }}" style="width:600;height:600"alt="" title=""></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a class="btn btn-success" href="{{ path('jardin_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a class="btn btn-info" href="{{ path('jardin_edit', { 'id': jardin.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input class="btn btn-danger" type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+</center>
+
+{% endblock %}

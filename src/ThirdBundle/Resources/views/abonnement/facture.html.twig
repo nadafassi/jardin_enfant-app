@@ -1,0 +1,62 @@
+<body xmlns="http://www.w3.org/1999/html">
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+{% endblock stylesheets %}
+<title>Facture {{ abonnement.jardin.name }}</title>
+<div class="row">
+    <div class="span8" style="border: 3px solid black">
+        <center>
+            <h1 style="color: darkred">&nbsp;Jardin {{ abonnement.jardin.name }} </h1>
+        </center>
+    </div>
+
+    <br>
+    <div class="span6"style="margin-left:20px">
+        <h1 class="pull-right" style="opacity:0.4">FACTURE</h1>    <br /><br />
+    </div>
+</div>
+
+<br /><br />
+<div class="row">
+    <div class="span8" style="margin-left:20px" >
+        <span ><b>{{ abonnement.jardin.adresse }}<br />   <br>Email : hotel.erriadh@Topnet.tn</b></span>        </div>
+
+    <div class="span6" style="margin-left:20px">
+        <span class="pull-right" style="font-size:16px"><b>FACTURE: </b>&nbsp;&nbsp;&nbsp;{{abonnement.jardin.name}}<br /><b>DATE :</b> &nbsp;&nbsp;&nbsp;{% if abonnement.date %}{{ abonnement.date|date('d-m-Y') }}{% endif %}</span>    <br /><br />
+    </div>
+</div>
+<br /><br /><br />
+<div style="margin-left:20px">
+    <h3>FACTURE :</h3>
+</div>
+<br /><br />
+
+<table class='table table-striped' style='border:solid 2px'>
+    <tr >
+
+        <th>Description</th>
+        <th style='width:500px'>Montant</th>
+    </tr>
+    <tr style='height:350px'><center>
+        <td style='border:solid 1px' ><span style="font-size: 30px" >Facture payée au jardin {{ abonnement.jardin.name }}. Payée par {{ abonnement.enfant.parent.prenom }} {{ abonnement.enfant.parent.nom }} pour son enfant {{ abonnement.enfant.prenom }} {{ abonnement.enfant.nom }}.</span> </td>
+        <td style='border:solid 1px'><center><span style="font-size: 30px">{{abonnement.montant}} TND</span></center></td></center>
+    </tr>
+    <tr>
+        <td style='border:solid 1px'>TVA </td>
+        <td style='border:solid 1px'><center> <span style="font-size: 30px">19.00%</span></center></td>
+    </tr>
+    <tr>
+        <td style='border:solid 1px'>ETAT </td>
+        <td style='border:solid 1px'><center> <span style="font-size: 30px"> {{ abonnement.etat }}</span></center></td>
+    </tr>
+    <tr>
+        <td class='pull-right' >TOTAL</td>
+        <td style='border:solid 1px'><center> <span style="font-size: 30px"> {{abonnement.montant + abonnement.montant*19/100}} TND</span></center></td>
+
+    </tr>
+</table>
+<br />
+<center>
+    <h2>MERCI POUR VOTRE CONFIANCE !</h2>
+</center>
+</body>

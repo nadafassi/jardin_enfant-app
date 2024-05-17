@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+
+{{ parent() }}
+<link href="{{ asset('css/msgcss.css') }}" rel="stylesheet">
+{% endblock stylesheets %}
+{% block body %}
+    <link href="{{ asset('css/msgcss.css') }}" rel="stylesheet">
+<section class="page-title" style="background-image:url({{ asset ('images/1.jpg')}});">
+    <div class="auto-container">
+        <div class="inner-container clearfix">
+
+            <h1>Message</h1>
+        </div>
+    </div>
+</section>
+
+
+    <div class="container">
+        <div class="messaging">
+            <div class="inbox_msg">
+                <div class="inbox_people">
+                    <div class="headind_srch">
+                        <div class="recent_heading">
+                            <h4>Recent</h4>
+                        </div>
+
+                    </div>
+                    <div class="inbox_chat">
+                        {% if jardin is defined %}
+                        {% for jar in jardin %}
+                            <a href="{{ url('messages_index',{'id': jar.id}) }}">
+                                <div class="chat_list ">
+                                    <div class="chat_people">
+                                        <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                        <div class="chat_ib">
+
+                                           {% set match_mess=[] %}
+                                            {% set messa=jar.messages %}
+
+                                            {% for m in messa %}
+                                                {% if m.parent.id == app.user.id %}
+                                                    {% set match_mess = match_mess|merge([m]) %}
+                                                {% endif %}
+                                            {% endfor %}
+                                            {% set messa=match_mess|last  %}
+                                            <h5>{{ jar.name}}
+                                                {% if messa.msg is defined and messa.msg is not null %}
+                                            <p>{{messa.msg }}</p>
+                                                {% else %}
+                                                    <p>Envoyer un message</p>
+                                                    {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                        {% endfor %}
+
+                        {% endif %}
+                    </div>
+                </div>
+
+
+
+                {% if messages is defined %}
+                    <div class="mesgs">
+                        <div class="msg_history">
+
+
+                            {% for message in messages %}
+
+
+                                {% if"ROLE_PARENT" in message.sender.roles %}
+                                    <div class="outgoing_msg">
+                                        <div class="sent_msg">
+                                            <p>{{ message.msg }}</p>
+                                            <span class="time_date">  {{message.date|date('Y-m-d | H:i:s') }}</span> </div>
+                                    </div>
+                                {% else %}
+                                    <div class="incoming_msg">
+                                        <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                        <div class="received_msg">
+                                            <div class="received_withd_msg">
+                                                <p>{{ message.msg }}</p>
+                                                <span class="time_date">  {{message.date|date('Y-m-d | H:i:s') }}</span></div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="type_msg">
+                            <div class="input_msg_write">
+                                <form action=" {{ path('sendmsg') }}" method="post">
+                                    {% if jarid is defined %}
+                                    <input type="hidden"   name="jarid" value="{{ jarid }}" />
+
+                                    {% endif %}
+                                    <input type="text" class="write_msg" placeholder="Type a message" name="msg" />
+                                    <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>    </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'back.html.twig' %}
+ {% block search %}
+     <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto" method="post">
+         <div class="form-group mb-0">
+             <div class="input-group input-group-alternative">
+                 <div class="input-group-prepend">
+                     <span class="input-group-text"><i class="fas fa-search"></i></span>
+                 </div>
+                 <input class="form-control" placeholder="Search" type="text" name="search">
+             </div>
+         </div>
+     </form>
+ {% endblock search %}
+
+{% block nav %}
+    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+        <div class="container-fluid">
+            <center><h1>Liste des chauffeurs</h1></center>
+        </div></div>
+{% endblock nav %}
+
+{% block body %}
+
+    <br>
+<form method="post">
+<div class="form-row" style="margin-left: 50px">
+    <div class="col-md-8">
+        <a class="btn btn-outline-success" href="{{ path('chauffeur_new') }}">Ajouter un chauffeur</a>
+   </div>
+
+              <div class="form-group col-md-2">
+              <select class="form-control" name="tri">
+                   <option value="asc">Par noms A-Z</option>
+                   <option value="desc">Par noms Z-A</option>
+           </select>
+           </div>
+    <div class="form-group col-md-1">
+        <button class="btn btn-outline-info" type="submit" >Trier</button>
+    </div>
+      </div>
+    </form>
+    <br><br>
+
+<div class="form-row col-md-12">
+{% for chauffeur in chauffeurs %}
+       <div class="form-group col-md-4">
+    <div class="cardd" onclick="location.href='{{ path('chauffeur_show', { 'id': chauffeur.id }) }}'">
+       <center> <img src="{{ asset('argon/assets/img/theme/pngfuel.com.png') }}" alt="Avatar" style="width:50%">
+        </center>
+        <div class="container">
+           <center> <h4><b>{{ chauffeur.nom }}</b></h4></center>
+        <div class="form-row col-md-12">
+            <div class="form-group col-md-10">
+            </div>
+            <div class="form-group col-md-2 float-right">
+            <a class="btn  " style="background-color: #4432a8;color: white" href="{{ path('chauffeur_edit', { 'id': chauffeur.id }) }}">Edit</a>
+            </div>
+        </div>
+        </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

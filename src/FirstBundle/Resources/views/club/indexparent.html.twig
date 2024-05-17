@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <center>
+        <h1>Liste des Clubs</h1>
+
+        {% block search %}
+            <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto" method="post" style="float: right">
+
+                <div class="form-group mb-0">
+                    <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-search"></i></span>
+                        </div>
+                        <input class="form-control" placeholder="Search" type="text" name="search">
+                    </div>
+                </div>
+            </form>
+
+        {% endblock search %}
+
+        <table id="example" class="table table-striped table-bordered" style="width:80%">
+            <thead>
+            <tr>
+
+                <th>Photo</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for club in clubs %}
+                <tr>
+
+                    <td><img src="{{asset('images/'~club.photo)}}" width="200" height="121"> </td>
+                    <td>{{ club.name }}</td>
+                    <td>{{ club.description }}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('club_show', { 'id': club.id }) }}">show</a>
+                            </li>
+
+                            <li>
+
+                                    <a href="{{ path('club_listeactivite', { 'id': club.id }) }}">liste des Activités</a>
+
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+
+
+    </center>
+{% endblock %}

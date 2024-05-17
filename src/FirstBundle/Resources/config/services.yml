@@ -1,0 +1,4 @@
+services:
+#    dorra.example:
+#        class: DorraBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

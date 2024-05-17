@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <center>
+        <h4 style="color: #0f3e68" >Modifier un abonnement</h4>
+        <br>
+    <div class="col-md-6 grid-margin stretch-card" bis_skin_checked="1">
+        <div class="card" bis_skin_checked="1">
+            <div class="card-body" bis_skin_checked="1">
+
+
+                <form class="forms-sample" method="post">
+                    <div class="form-group" bis_skin_checked="1" hidden>
+                        <label for="exampleInputName1">Date</label>
+                        {{ form_widget(edit_form.date,{'attr': {'class': 'form-control'}})}}                    </div>
+                    <div class="form-group" bis_skin_checked="1">
+                        <label for="exampleInputEmail3">Type</label>
+
+                        {{ form_widget(edit_form.type,{'attr': {'class': 'form-control'}})}}
+                    </div>
+
+                    <div class="form-group" bis_skin_checked="1" hidden>
+                        <label for="exampleInputCity1">Etat</label>
+                        {{ form_widget(edit_form.etat,{'attr': {'class': 'form-control'}})}}
+                    </div>
+
+
+                    <div class="form-group" bis_skin_checked="1" hidden>
+                        <label for="exampleInputCity1">Jardin</label>
+                        {{ form_widget(edit_form.jardin,{'attr': {'class': 'form-control'}})}}
+                    </div>
+                    <div class="form-group" bis_skin_checked="1" hidden>
+                        <label for="exampleInputCity1">Enfant</label>
+                        {{ form_widget(edit_form.enfant,{'attr': {'class': 'form-control'}})}}
+                    </div>
+
+
+
+                    <div>
+                        <button type="submit" class="btn btn-success mr-2">Modifier</button>
+                        <ul>
+                            <li>
+
+                                <a href="{{ path('abonnement_index') }}">Back to the list</a>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+   <br>
+    </center>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <center>
+
+
+        <div class="col-md-6 grid-margin stretch-card" bis_skin_checked="1">
+            <div class="card" bis_skin_checked="1">
+                <div class="card-body" bis_skin_checked="1">
+                    <h4 class="card-title">Participer à  une activité </h4>
+
+                    {{ form_start(form) }}
+                    <form method="POST" class="forms-sample ">
+                        <div class="form-group" bis_skin_checked="1">
+                            <B><label for="exampleInputName1">Type d'activité  :</label></B>
+                             {{activites.typeact}}                    </div>
+                        <div class="form-group" bis_skin_checked="1">
+                            <div class="form-group" bis_skin_checked="1">
+                               <B> <label for="exampleInputCity1">Date de l'activité: </label></B>
+
+                                {{ activites.Date|date('Y-m-d ') }}
+                            </div>
+                           <B> <label for="exampleInputEmail3">nom de l'enfant</label></B>
+                            {{ form_widget(form.enfant,{'attr': {'class': 'form-control'}})}}
+                        </div>
+
+
+                        <div class="form-group col-lg-12 col-md-12 col-sm-12 text-center">
+                            <button type="submit" class="btn btn-success mr-2">Participer à l'activité</button>
+                        </div>
+                        {{ msg }}
+
+
+
+
+                        {{ form_end(form) }}
+                    </form>
+                </div>
+            </div>
+        </div>
+        <ul>
+            <li>
+                <a href="{{ path('activite_index') }}">Back to the list</a>
+            </li>
+        </ul>
+    </center>
+{% endblock %}

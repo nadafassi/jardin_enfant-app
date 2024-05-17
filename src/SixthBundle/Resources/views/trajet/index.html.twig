@@ -1,0 +1,36 @@
+{% extends 'back.html.twig' %}
+
+
+
+{% block nav %}
+    <center>
+    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+        <div class="container-fluid">
+            <h1>Les trajets disponibles</h1>
+        </div></div>
+    </center>
+    <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('demo.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('template.css') }}" />
+{% endblock nav %}
+{% block body%}
+
+<body id="markers-on-the-map">
+<br>
+<div class="form-row" style="margin-left: 50px">
+    <a class="btn btn-outline-success" href="{{ path('trajet_new') }}">Ajouter un nouveau trajet</a>
+</div><center>
+<div class="page-header">
+    <p>Les chauffeurs et leurs trajets</p>
+</div>
+<div id="map"></div>
+
+<script type="text/javascript" src='{{ asset('demo.js') }}'></script>
+<script src="{{ asset('argon/assets/js/jquery-3.3.1.js') }}"></script>
+
+</center>
+</body>
+{% endblock body %}
+
+

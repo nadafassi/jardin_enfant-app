@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <center>
+    <h1>liste des événements</h1>
+    </center>
+    <!-- Event Section -->
+    <section class="events-section style-two">
+        <div class="auto-container">
+            <div class="row">
+                {% set cl="fadeInLeft" %}
+                {% for evenement in evenements %}
+                    <div class="event-block col-xl-6 col-md-12 col-sm-12 wow {{cl}}">
+                        <div class="inner-box">
+                            <div class="image-box">
+                                <figure class="image"><img src="{{ asset('images/resource/'~evenement.image) }}"></figure>
+                            </div>
+                            <div class="content-box">
+                                <div class="date">{{evenement.date|date('d F Y')}}</div>
+                                <h4><a href="{{path('evenements_show', {id: evenement.id})}}">{{evenement.titre}}</a></h4>
+                                <ul class="event-info">
+                                    <li><span>Time:</span> {{ evenement.date|date('H:i') }}</li>
+                                    <li><span>Location:</span> {{evenement.jardin.name}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    {% if(cl=="fadeInLeft") %}
+                        {% set cl="fadeInRight" %}
+                    {% else %}
+                        {% set cl="fadeInLeft" %}
+                    {% endif %}
+                {% endfor %}
+
+
+            </div>
+        </div>
+    </section>
+    <!--End Event Section -->
+{% endblock %}
+

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <center><h1>affichage du Club </h1>
+
+        <table id="example" class="table table-striped table-bordered" style="width:80%">
+            <thead >
+            <tr >
+
+
+
+                <th>Photo</th>
+
+                <th>Name</th>
+
+                <th>Description</th>
+
+            </tr>
+            </thead>
+
+            <tr>
+
+                <td><img src="{{asset('images/'~club.photo)}}" width="200" height="121"> </td>
+                <td>{{ club.name }}</td>
+                <td>{{ club.description }}</td>
+            </tr>
+
+        </table>
+        <div>
+            <li>
+                <a href="{{ path('club_index') }}">Back to the list</a>
+            </li>
+            </ul>
+        </div>
+    </center>
+{% endblock %}

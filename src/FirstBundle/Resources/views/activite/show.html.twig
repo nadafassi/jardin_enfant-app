@@ -1,0 +1,52 @@
+{% extends 'back.html.twig' %}
+{% block nav %}
+    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+        <div class="container-fluid">
+            <center><h1>Detail de l'activité</h1></center>
+        </div></div>
+{% endblock nav %}
+{% block body %}
+    <center>
+
+
+    <table id="example" class="table table-striped table-bordered" style="width:80% ">
+        <tbody>
+            <tr>
+
+                <th>Photo</th>
+                <th>Type d'activite</th>
+                <th>Details</th>
+                <th>Date de l'activité</th>
+
+
+            </tr>
+            <tr>
+
+                <td><img src="{{asset('images/'~activite.photo)}}" width="200" height="121"> </td>
+                <td>{{ activite.typeact }}</td>
+                <td>{{ activite.detailles }}</td>
+                <td>{{ activite.Date|date('Y-m-d ') }}</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+<div class=" col-md-4 col-sm-4 ">
+    <a href="{{ path('activite_edit', { 'id': activite.id }) }}" ><button class="btn btn-info">Editer</button></a>
+
+</div>
+    <br>
+    <div class=" col-md-4 col-sm-4 ">
+
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Supprimer" class="btn btn-danger">
+            {{ form_end(delete_form) }}
+
+        </div>
+
+        <li>
+            <a href="{{ path('activite_indexback') }}">Back to the list</a>
+        </li>
+    </ul>
+    </center>
+{% endblock %}

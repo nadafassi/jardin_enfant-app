@@ -1,0 +1,167 @@
+<div id="calendar-holder"></div>
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/fullcalendar/css/fullcalendar/fullcalendar.min.css') }}" />
+{% endblock %}
+
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/moment.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/fullcalendar.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/fullcalendar.default-settings.js') }}"></script>
+
+    <script>
+
+
+        $(function () {
+            $('#calendar-holder').fullCalendar({
+                header: {
+                    left: 'prev, next',
+                    center: 'title',
+                    right: 'month, basicWeek, basicDay,'
+                },
+
+
+                lazyFetching: false,
+                timeFormat: {
+                    agenda: 'h:mmt',
+                    '': 'h:mmt'
+                },
+
+                eventSources: [
+                    {
+                        url: "../../../full-calendar/load",
+                        type: 'POST',
+                        color: 'bleu',
+                        textColor: 'white',
+                        data: {},
+                        error: function () {
+                        }
+                    }
+                ],eventRender:function(event, element){
+                    element.css('text-align', 'center');
+
+                },
+
+
+                eventClick: function (calEvent, jsEvent, view) {
+
+
+                    window.location.href = "http://localhost/pi-dev-web/web/app_dev.php/events/detail/" + calEvent.id
+
+
+                },
+                //CHANGEMENT DE LA DATE DANS CALENDEIER
+
+                eventDrop: function (calEvent, jsEvent, view) {
+                    var start = calEvent.start;
+                    var end = calEvent.end;
+                    var user = {{ app.user.id }}
+                    var opt = {
+                        autoOpen: true,
+                        modal: true,
+
+                        width: 250,
+                        height: 150,
+
+                    };
+
+
+                    if (!confirm("Voulez vous changer la date")) {
+
+                        revertFunc();
+
+                    } else {
+
+
+                        //ENVOI OBJET JSON AU FRONTEND JAVASCRIPT ET BACKEND PHP
+                        $.ajax({
+                            type: "POST",
+                            url: "{{ path('date') }}",
+                            data: {
+                                "event": calEvent.title,
+                                "datedebut": start.format(),
+                                "datefin": end.format(),
+                                "user": user
+                            },
+                            success: function (data) {
+                                $.noConflict();
+                                if (data == "yes") {
+
+                                    console.log(data)
+
+                                    $(function () {
+                                        $("#dialog").dialog(opt);
+                                        $("#dialog").dialog("open");
+                                    });
+
+
+                                } else {
+                                    alert("no");
+                                    revertFunc();
+                                }
+
+
+                            },
+                            error: function () {
+                                revertFunc();
+                            }
+                        });
+
+                    }
+
+                },
+
+
+                //CHAGEMENT DU DUREE DU CALENDRIER EN UTILISANT REVERTFUNC
+                eventResize: function (event, delta, revertFunc) {
+
+                    var start = event.start;
+                    var end = event.end;
+                    var user = {{ app.user.id }}
+                    if (!confirm("Voulez vous changer la duree")) {
+
+                        revertFunc();
+
+                    } else {
+                        $.ajax({
+                            type: "POST",
+                            url: "{{ path('date') }}",
+                            data: {
+                                "event": event.title,
+                                "datedebut": start.format(),
+                                "datefin": end.format(),
+                                "user": user
+                            },
+                            success: function (data) {
+                                if (data == "yes") {
+                                    alert("yes");
+                                    console.log(data)
+                                    $(function () {
+                                        $("#dialog").dialog(opt);
+                                        $("#dialog").dialog("open");
+
+
+                                    });
+
+                                } else {
+                                    alert("no");
+                                    revertFunc();
+                                }
+                            },
+                            error: function () {
+                                revertFunc();
+                            }
+                        });
+                    }
+
+                },
+
+
+            });
+
+        });
+
+
+    </script>
+{% endblock %}

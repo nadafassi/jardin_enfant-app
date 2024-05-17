@@ -1,0 +1,70 @@
+{% extends 'back.html.twig' %}
+{% block nav %}
+    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+        <div class="container-fluid">
+            <center><h1>Liste des clubs</h1></center>
+        </div></div>
+{% endblock nav %}
+
+{% block body %}
+<form method="post">
+<div class="form-row" style="margin-left: 50px">
+    <div class="form-group col-md-2 right" >
+        <select class="form-control " name="tri">
+            <option value="asc">Par noms A-Z</option>
+            <option value="desc">Par noms Z-A</option>
+        </select>
+    </div>
+    <div class="form-group col-md-1">
+        <button class="btn btn-outline-info" type="submit" >Trier</button>
+    </div>
+</div>
+</form>
+    <center>
+
+
+
+    <table id="example" class="table table-striped table-bordered " style="width:80%">
+        <thead>
+            <tr>
+
+                <th><b>Photo</b></th>
+                <th><b>Nom</b></th>
+                <th><b>Description</b></th>
+                <th><b>Actions</b></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for club in clubs %}
+            <tr>
+
+                <td><img src="{{asset('images/'~club.photo)}}" width="200" height="121"> </td>
+                <td>{{ club.name }}</td>
+                <td>{{ club.description }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('club_show', { 'id': club.id }) }}">show</a>
+                        </li>
+                        <li>
+
+                            <a href="{{ path('club_edit', { 'id': club.id }) }}">edit</a>
+
+                        </li>
+
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+       <div class="form-group col-lg-12 col-md-12 col-sm-12 text-center" >
+
+           <a href="{{ path('club_new') }}"  ><button class="btn btn-outline-success" type="submit" name="submit-form">Ajouter un Club</button>
+
+           </a></div>
+
+
+   </center>
+{% endblock %}

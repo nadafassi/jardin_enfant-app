@@ -1,0 +1,53 @@
+{% extends 'back.html.twig' %}
+
+{% block body %}
+    <center>
+
+
+    <div class="col-md-6 grid-margin stretch-card" bis_skin_checked="1">
+        <div class="card" bis_skin_checked="1">
+            <div class="card-body" bis_skin_checked="1">
+                <h4 class="card-title">Ajouter une activité </h4>
+
+                {{ form_start(form) }}
+                <form method="POST" class="forms-sample ">
+                    <div class="form-group" bis_skin_checked="1">
+                        <label for="exampleInputName1">Type d'activité</label>
+                        {{ form_widget(form.typeact,{'attr': {'class': 'form-control'}})}}                    </div>
+                    <div class="form-group" bis_skin_checked="1">
+                        <label for="exampleInputEmail3">details</label>
+
+                        {{ form_widget(form.detailles,{'attr': {'class': 'form-control'}})}}
+                    </div>
+                    <div class="form-group" bis_skin_checked="1">
+                        <label for="exampleInputCity1">Club</label>
+                        {{ form_widget(form.club,{'attr': {'class': 'form-control'}})}}
+                    </div>
+                    <div class="form-group" bis_skin_checked="1">
+                        <label for="exampleInputCity1">Date de l'activité</label>
+                        {{ form_widget(form.Date,{'attr': {'class': 'form-control'}})}}
+                    </div>
+
+                    <div class="form-group" bis_skin_checked="1">
+                        <label for="exampleInputEmail3">photo</label>
+
+                        {{ form_widget(form.photo,{'attr': {'class': 'form-control'}})}}
+                    </div>
+
+                    <div class="form-group col-lg-12 col-md-12 col-sm-12 text-center">
+                        <button type="submit" class="btn btn-success mr-2">Ajouter</button>
+
+
+                    </div>
+                    {{ form_end(form) }}
+                </form>
+            </div>
+        </div>
+    </div>
+    <ul>
+        <li>
+            <a href="{{ path('activite_indexback') }}">Back to the list</a>
+        </li>
+    </ul>
+    </center>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body%}
+    <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('demo.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('template.css') }}" />
+    <body id="markers-on-the-map">
+    <br>
+
+    <center>
+        <div class="page-header">
+            <h2>Les trajets disponibles du jardin : {{ jardin.name }}</h2>
+        </div>
+        <div id="map"></div>
+
+        <script type="text/javascript" src='{{ asset('mapParent.js') }}'></script>
+        <script src="{{ asset('argon/assets/js/jquery-3.3.1.js') }}"></script>
+    </center><br><br>
+    </body>
+{% endblock body %}

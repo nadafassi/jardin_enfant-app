@@ -1,0 +1,55 @@
+{% extends 'back.html.twig' %}
+{% block nav %}
+    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+        <div class="container-fluid">
+            <h1 class="card-title align-content-center">Liste categorie</h1>
+
+        </div></div>
+
+{% endblock nav %}
+
+{% block body %}
+    <h1>Liste des catégories</h1>
+
+
+    <div class="form-group col-lg-3 col-md-3 col-sm-3 text-center"; style="float: right">
+
+    <ul>
+        <li>
+            <a  class="theme-btn btn-style-one" class="btn";  href="{{ path('categorie_new') }}">Créer une catégorie</a>
+        </li>
+    </ul>
+
+    </div>
+
+<center>
+    <table  id="example" class="table table-striped table-bordered" style="width:90%">
+        <thead>
+
+            <tr>
+                <th>Id</th>
+                <th>Libelle</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for categorie in categories %}
+            <tr>
+                <td><a href="{{ path('categorie_show', { 'id': categorie.id }) }}">{{ categorie.id }}</a></td>
+                <td>{{ categorie.libelle }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a class="btn btn-secondary" href="{{ path('categorie_show', { 'id': categorie.id }) }}">Afficher</a>
+                        </li>
+                        <li>
+                            <a class="btn btn-warning" href="{{ path('categorie_edit', { 'id': categorie.id }) }}">Modifier</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</center>
+{% endblock %}

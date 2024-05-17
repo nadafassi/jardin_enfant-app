@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+
+{{ parent() }}
+    <link href="{{ asset('css/nucleo.css') }}" rel="stylesheet" />
+
+    <link href="{{ asset('argon/assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('argon/assets/js/plugins/nucleo/fonts/nucleo-icons.svg') }}" rel="stylesheet" />
+{% endblock stylesheets %}
+{% block body %}
+    <h3>Remarques</h3>
+
+
+  <!--  <div class="navigation text-center">
+        <div class="count">
+            {{ remarques.getTotalItemCount }}
+        </div>
+    </div>-->
+    <div>
+        <form action="{{ path('remarque_index') }}" method="get">
+
+
+            <div class="col-sm-2" >
+                <div class="input-group" >
+                    <input name="filter" id="table_filter" type="text" class="form-control" placeholder="filter">
+                    <div class="input-group-btn" >
+            <button type="submit" class="btn btn-default btn-sm">Filter Now</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+        <table class="table">
+            <tr>
+                {# sorting of properties based on query components #}
+                <th>{{ knp_pagination_sortable(remarques, 'Id', 'a.id') }}</th>
+                <th{% if remarques.isSorted('a.enfant') %} class="sorted"{% endif %}>
+                    {{ knp_pagination_sortable(remarques, 'nom', 'a.enfant') }}
+                </th>
+                <th{% if remarques.isSorted(['a.date']) %} class="sorted"{% endif %}>
+                    {{ knp_pagination_sortable(remarques, 'date', ['a.date']) }}
+                </th>
+                <th{% if remarques.isSorted(['a.description']) %} class="sorted"{% endif %}>
+                    {{ knp_pagination_sortable(remarques, 'description', ['a.description']) }}
+                </th>
+            </tr>
+
+            {# table body #}
+            {% for remarque in remarques %}
+                <tr {% if loop.index is odd %}class="color"{% endif %}>
+                    <td>{{ remarque.id }}</td>
+                    <td>{{ remarque.abonnement.enfant.nom}}</td>
+                    <td>{{ remarque.date | date('Y-m-d') }}</td>
+                    <td>{{ remarque.description }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+
+
+        {# display navigation #}
+        <div class=" navigation" >
+            {{ knp_pagination_render(remarques, null, {}, {
+                'position': 'centered',
+                'size': 'small',
+                'rounded': true,
+            })  }}
+        </div>
+
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    hello there just testing the modal
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+   <script>
+       $("#mbtn").click(function () {
+           $("#myModal").modal('toggle')
+       })
+   </script>
+{% endblock %}

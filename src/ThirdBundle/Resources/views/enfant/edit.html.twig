@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <center>
+    <h1 style="color: #0f3e68">Modifier Enfant</h1>
+<br>
+    <div class="col-md-6 grid-margin stretch-card" bis_skin_checked="1">
+        <div class="card" bis_skin_checked="1">
+            <div class="card-body" bis_skin_checked="1">
+
+
+                <form class="forms-sample" method="post">
+                    <div class="form-group" bis_skin_checked="1">
+                        <label for="exampleInputName1">Nom</label>
+                        {{ form_widget(edit_form.nom,{'attr': {'class': 'form-control'}})}}                    </div>
+                    <div class="form-group" bis_skin_checked="1">
+                        <label for="exampleInputEmail3">Prenom</label>
+
+                        {{ form_widget(edit_form.prenom,{'attr': {'class': 'form-control'}})}}
+                    </div>
+
+                    <div class="form-group" bis_skin_checked="1">
+                        <label for="exampleInputCity1">Date de naissance</label>
+                        {{ form_widget(edit_form.datenaiss,{'attr': {'class': 'form-control'}})}}
+                    </div>
+
+                    <div class="form-group" bis_skin_checked="1">
+                        <label for="exampleInputCity1">Sexe</label>
+                        {{ form_widget(edit_form.sexe,{'attr': {'class': 'form-control'}})}}
+                    </div>
+
+
+
+                    <div>
+                        <button type="submit" class="btn btn-success mr-2">Modifier</button>
+                        <ul>
+                            <li>
+                                <a href="{{ path('enfant_index') }}">Back to the list</a>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+<br>
+    </center>
+{% endblock %}

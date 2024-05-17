@@ -1,0 +1,46 @@
+
+
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+<center>
+        <div class="col-md-6 grid-margin stretch-card" bis_skin_checked="1">
+            <div class="card" bis_skin_checked="1">
+                <div class="card-body" bis_skin_checked="1">
+                    <h4 class="card-title">Participer</h4>
+<form method="post">
+
+                <div class="form-group" bis_skin_checked="1">
+                    <label for="exampleInputName1">Titre</label>
+                    <div class="form-control">{{ evenement.titre}}     </div>   </div>
+
+                <div class="form-group" bis_skin_checked="1">
+                    <label for="exampleInputName1">Description</label>
+                    <div class="form-control"> {{ evenement.description }}   </div> </div>
+
+                <div class="form-group" bis_skin_checked="1">
+                    <label for="exampleInputName1">séléctionner votre enfant</label>
+                    {{ form_widget(form.enfant,{'attr': {'class': 'form-control'}})}}
+
+                </div>
+                    <ul>
+                        <li>
+
+                            <input class="btn btn-primary" type="submit" value="Participer">
+
+                        </li>
+                    </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+</center>
+{% endblock %}

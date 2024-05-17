@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+
+
+
+
+    <section class="contact-form-section">
+        <div class="auto-container">
+            <div class="contact-form">
+                <div class="sec-title text-center">
+                    <span class="title">Dites-nous</span>
+                    <h2>Contactez Nous</h2>
+                </div>
+
+                {{ form_start(form) }}
+                <div class="row">
+                    <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                        {{ form_widget(form.nom,{'attr': {'class': 'form-control'}})}}
+                    </div>
+
+                        <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                            {{ form_widget(form.numtel,{'attr': {'class': 'form-control'}})}}
+                        </div>
+
+                            <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                {{ form_widget(form.mail,{'attr': {'class': 'form-control'}})}}
+                            </div>
+
+                    <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                        {{ form_widget(form.titre,{'attr': {'class': 'form-control'}})}}
+                    </div>
+
+                    <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                        {{ form_widget(form.description,{'attr': {'class': 'form-control'}})}}
+                    </div>
+
+                    <div class="form-group col-lg-12 col-md-12 col-sm-12 text-center">
+                        <button class="theme-btn btn-style-one" type="submit" name="submit-form">Envoyez</button>
+                    </div>
+                </div>
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </section>
+
+    <ul>
+        <li>
+            <a href="{{ path('reclamation_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}

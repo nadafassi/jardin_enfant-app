@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 style="color: red">Jardins list</h1>
+    <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto" method="post">
+        <div class="form-group mb-0">
+            <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                </div>
+                <input class="form-control" placeholder="Search" type="text" name="search">
+            </div>
+        </div>
+    </form>
+
+    <table class="table table-striped table-bordered" style="width:50%" >
+        <thead>
+
+
+
+        <tr>
+            {# sorting of properties based on query components #}
+
+            <th>
+                name
+            </th>
+            <th>
+                description
+            </th>
+            <th>
+                adresse
+            </th>
+            <th>
+
+            </th>
+
+        </tr>
+
+        </thead>
+        <tbody>
+        {% for jardin in jardins %}
+            <tr>
+                <td style="color: #1c7430">{{ jardin.name }}</td>
+                <td style="color: #3b003b">{{ jardin.description }}</td>
+
+                <td style="color: #00A8FF">{{ jardin.adresse }}</td>
+
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('jardin_show', { 'id': jardin.id }) }}" style="color: gold"><button type="submit" value="Modifier" class="btn btn-success mr-2">Show</button></a>
+                        </li>
+                        <li>
+                            <a href="{{ path('jardin_edit', { 'id': jardin.id }) }}" style="color: gold" ><button type="submit" value="Modifier" class="btn btn-primary">Edit</button></a>
+                        </li>
+                        <br>
+                        <li>
+                            <a class="btn btn-primary" href="{{ path('abonnement_news', { 'id': jardin.id }) }}">S'abonner</a>
+
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {# display navigation #}
+    <div class=" navigation" >
+        {{ knp_pagination_render(jardins, null, {}, {
+            'position': 'centered',
+            'size': 'small',
+            'rounded': true,
+        })  }}
+    </div>
+
+
+
+
+    <ul>
+        <li>
+            <a href="{{ path('jardin_new') }}" style="color: red"><button type="submit" value="Modifier" class="btn btn-danger">Create a new jardin</button></a>
+        </li>
+    </ul>
+
+
+{% endblock %}

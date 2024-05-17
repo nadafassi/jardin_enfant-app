@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+
+    <section class="contact-form-section">
+        <div class="auto-container">
+            <div class="contact-form">
+                <div class="sec-title text-center">
+
+                    <h2>Connectez-Vous</h2>
+                </div>
+                <form method="post" action="{{ path('user_login') }}">
+
+                    <div class="row">
+                        <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                            <input name="username" placeholder="username" type="text">
+                        </div>
+
+                        <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                            <input name="password" placeholder="password" type="password">
+                        </div>
+
+                        {% if msg is not empty %}
+                            <div class="alert alert-danger" role="alert">
+                                {{msg}}
+                            </div>
+                        {% endif %}
+
+                        <div class="form-group col-lg-12 col-md-12 col-sm-12 text-center">
+                            <button class="theme-btn btn-style-one" type="submit" name="submit-form">se connecter</button>
+
+                        </div>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+{% endblock %}

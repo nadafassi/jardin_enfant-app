@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <section class="page-title" style="background-image:url({{ asset ('images/1.jpg')}});">
+        <div class="auto-container">
+            <div class="inner-container clearfix">
+
+                <h1>Reclamation</h1>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+    <section class="program-detail">
+        <div class="auto-container">
+            <div class="row">
+                <!-- Content Column -->
+                <div class="content-column col-lg-6 col-md-12 col-sm-12 order-2">
+                    <div class="inner-column">
+                        <h3>{{ reclamation.titre}}</h3>
+                        <ul class="social-icon-colored">
+                            <li>
+                                {{ form_start(delete_form) }}
+                                <button type="submit" ><span style="color: red" class="fas fa-trash"></span></button>
+                                {{ form_end(delete_form) }}
+                            </li>
+                        </ul>
+                        <div class="text">{{ reclamation.description }}</div>
+                        <ul class="program-info">
+
+                            <li><span>Date</span> {{ reclamation.date|date('Y-m-d H:i:s') }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="image-column col-lg-6 col-md-12 col-sm-12">
+                <div class="image-box wow fadeIn">
+                    <figure class="image"><a href= class="lightbox-image"><img alt=""></a></figure>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+
+
+
+    <ul>
+        <li>
+            <a href="{{ path('reclamation_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('reclamation_edit', { 'id': reclamation.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

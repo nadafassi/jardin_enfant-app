@@ -1,0 +1,59 @@
+{% extends 'back.html.twig' %}
+
+{% block body %}
+
+<div class="form-row col-md-12">
+    <div class="form-group col-md-1"></div>
+    <div class="form-group col-md-5">
+   <div class="container">
+        <div class="row">
+            <div class="col-md-7 col-md-offset-7">
+    <h2>Evenement</h2>
+
+
+    <table id="example" class="table table-striped table-bordered" style="width:100%">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ evenement.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ evenement.titre }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{% if evenement.date %}{{ evenement.date|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ evenement.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    <ul>
+        <li>
+            {{ form_start(delete_form) }}
+
+            <a class="btn btn-success" href="{{ path('evenement_edit', { 'id': evenement.id }) }}">Modifier</a>
+                <input class="btn btn-danger" type="submit" value="supprimer">
+            <a class="btn btn-primary" href="{{ path('evenement_participe', { 'id': evenement.id }) }}">Participer</a>
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+        </div>
+    </div>
+    </div></div>
+        <div class="form-group col-md-6">
+
+            <img src="{{ asset('Image_Directory' ~ evenement.image) }}" >
+
+
+        </div>
+    </div>
+{% endblock %}
+
+

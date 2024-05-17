@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <center>
+    <h1>Détails Abonnement</h1>
+
+    <table id="example" class="table table-striped table-bordered" style="width:20%">
+        <tbody>
+        <tr>
+            <th>Nom Prenom</th>
+            <td>{{ abonnement.enfant.nom }} {{ abonnement.enfant.prenom }}</td>
+        </tr>
+
+            <tr>
+                <th>Date</th>
+                <td>{% if abonnement.date %}{{ abonnement.date|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ abonnement.type }}</td>
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td>{{ abonnement.etat }}</td>
+            </tr>
+            <tr>
+                <th>Montant</th>
+                <td>{{ abonnement.montant }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+
+        <li>
+
+
+
+            {{ form_start(delete_form) }}
+            <a class="btn btn-primary" href="{{ path('abonnement_edit', { 'id': abonnement.id }) }}">Edit</a>
+                <input class="btn btn-danger" type="submit" value="Delete">
+            <a class="btn btn-primary" href="{{ path('facture_abon', { 'id': abonnement.id }) }}">Facture</a>
+            {{ form_end(delete_form) }}
+
+        <li>
+            <a href="{{ path('abonnement_index') }}">Back to the list</a>
+        </li>
+    </ul>
+    </center>
+{% endblock %}

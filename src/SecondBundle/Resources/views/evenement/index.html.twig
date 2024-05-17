@@ -1,0 +1,67 @@
+{% extends 'back.html.twig' %}
+{% block search %}
+    <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto" method="post">
+        <div class="form-group mb-0">
+            <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                </div>
+                <input class="form-control" placeholder="Search" type="text" name="search">
+            </div>
+        </div>
+    </form>
+{% endblock search %}
+{% block nav %}
+
+    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+        <div class="container-fluid">
+            <center><h1>Liste des événements</h1></center>
+
+        </div></div>
+
+{% endblock nav %}
+
+{% block body %}
+
+
+<center>
+
+    <div class="form-group col-lg-3 col-md-3 col-sm-3 text-center"; style="float: right">
+
+
+                <a  class="btn btn-outline-info"  href="{{ path('evenement_new') }}">Créer un événement</a>
+
+    </div>
+    <table id="example" class="table table-striped table-bordered" style="width:90%">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for evenement in evenements %}
+            <tr>
+                <td><a href="{{ path('evenement_show', { 'id': evenement.id }) }}">{{ evenement.id }}</a></td>
+                <td>{{ evenement.titre }}</td>
+                <td>{% if evenement.date %}{{ evenement.date|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ evenement.description }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a class="btn btn-secondary" href="{{ path('evenement_show', { 'id': evenement.id }) }}">Afficher</a>
+                        </li>
+                        <li>
+                            <a class="btn btn-warning" href="{{ path('evenement_edit', { 'id': evenement.id }) }}">Modifier</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</center>
+{% endblock %}

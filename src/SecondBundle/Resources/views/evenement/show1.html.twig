@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<!--Page Title-->
+<<section class="page-title" style="background-image:url({{ asset ('images/1.jpg')}});">
+    <div class="auto-container">
+        <div class="inner-container clearfix">
+
+            <h1>Evenement</h1>
+        </div>
+    </div>
+</section>
+<!--End Page Title-->
+
+
+<!-- Event Detail Section -->
+<div class="event-detail-section">
+    <div class="auto-container">
+        <div class="row">
+            <!--Content Side-->
+            <div class="content-side col-lg-8 col-md-12 col-sm-12">
+                <div class="event-detail">
+                    <!-- Image Box -->
+                    <div class="image-box wow fadeIn"><a href="{{ asset("images/resource/event-detail.jpg")}}" class="lightbox-image">
+                            <img src="{{ asset("images/resource/event-detail.jpg")}}" alt=""></a></div>
+
+                    <div class="lower-content">
+                        <span class="date">{{ event.date|date('d F Y')}}</span>
+                        <h3>{{event.titre}}</h3>
+                        <p>{{event.description}}</p>
+                    </div>
+                    <a class="btn btn-primary" href="{{ path('evenement_participe', { 'id': event.id }) }}">Participer</a>
+
+
+                    <div class="post-share-options clearfix">
+    <div class="float-left">
+        <ul class="event-info">
+            <li><span>Time:</span> 9:00-11:00</li>
+            <li><span>Location:</span>{{ event.jardin.name }}</li>
+        </ul>
+    </div>
+
+    <div class="float-right">
+        <ul class="social-icon-colored">
+            <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
+            <li><a href="#"><span class="fab fa-twitter"></span></a></li>
+            <li><a href="#"><span class="fab fa-youtube"></span></a></li>
+        </ul>
+    </div>
+</div>
+                </div></div></div></div></div>
+{% endblock %}

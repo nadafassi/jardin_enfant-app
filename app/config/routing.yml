@@ -1,0 +1,124 @@
+#app_api_trajets:
+#    resource: "@SamiBundle/Controller/ApiController.php"
+ #   type:     annotation
+  #  prefix: /
+app_remarque:
+    resource: "@KarimBundle/Controller/RemarqueController.php"
+    type:     annotation
+
+app_trajet:
+    resource: "@SamiBundle/Controller/TrajetController.php"
+    type:     annotation
+
+app_parents:
+    resource: "@KarimBundle/Controller/ParentsController.php"
+    type:     annotation
+
+
+app_paiement:
+    resource: "@RaedBundle/Controller/PaiementController.php"
+    type:     annotation
+
+app_jardin:
+    resource: "@RaedBundle/Controller/jardinController.php"
+    type:     annotation
+app_wsraed:
+    resource: "@RaedBundle/Controller/WebServicesController.php"
+    type:     annotation
+    prefix: /
+
+app_reclamation:
+    resource: "@KarimBundle/Controller/ReclamationController.php"
+    type:     annotation
+app_WebServices:
+    resource: "@KarimBundle/Controller/WebServicesController.php"
+    type:     annotation
+    prefix: /
+app_club:
+    resource: "@DorraBundle/Controller/ClubController.php"
+    type:     annotation
+
+app_activite:
+    resource: "@DorraBundle/Controller/ActiviteController.php"
+    type:     annotation
+
+
+
+
+app_chauffeur:
+    resource: "@SamiBundle/Controller/ChauffeurController.php"
+    type:     annotation
+
+app_tuteur:
+    resource: "@SamiBundle/Controller/TuteurController.php"
+    type:     annotation
+
+app_abonnement:
+    resource: "@FeridBundle/Controller/AbonnementController.php"
+    type:     annotation
+    prefix:   /
+
+app_servic:
+    resource: "@FeridBundle/Controller/WebServicesController.php"
+    type:     annotation
+    prefix:   /
+
+app_enfant:
+        resource: "@FeridBundle/Controller/EnfantController.php"
+        type:     annotation
+        prefix:   /
+
+app_default:
+        resource: "@FeridBundle/Controller/DefaultController.php"
+        type:     annotation
+        prefix:   /
+
+raed:
+    resource: "@RaedBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+app_categorie:
+    resource: "@EmnaBundle/Controller/CategorieController.php"
+    type:     annotation
+    prefix:   /cat
+
+app_evenement:
+    resource: "@EmnaBundle/Controller/EvenementController.php"
+    type:     annotation
+    prefix:   /eve
+app_evenementapi:
+    resource: "@EmnaBundle/Controller/webservicesController.php"
+    type:     annotation
+    prefix: /eveapi
+
+dorrq:
+    resource: "@DorraBundle/Controller/"
+    type:     annotation
+    prefix:   /dorra
+
+
+sami:
+    resource: "@SamiBundle/Controller/"
+    type:     annotation
+    prefix:   /Sami
+
+karim:
+    resource: "@KarimBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+adesigns_calendar:
+    resource: "@ADesignsCalendarBundle/Resources/config/routing.xml"
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+ancarebeca_fullcalendar:
+    resource: "@FullCalendarBundle/Resources/config/routing.yml"

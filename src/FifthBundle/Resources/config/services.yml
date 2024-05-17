@@ -1,0 +1,4 @@
+services:
+#    raed.example:
+#        class: RaedBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

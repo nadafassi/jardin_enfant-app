@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Remarque</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ remarque.id }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ remarque.description }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{% if remarque.date %}{{ remarque.date|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('remarque_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('remarque_edit', { 'id': remarque.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

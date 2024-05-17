@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<center>
+    <div class="col-md-6 grid-margin stretch-card" bis_skin_checked="1">
+        <div class="card" bis_skin_checked="1">
+            <div class="card-body" bis_skin_checked="1">
+                <h4 class="card-title">Modifier la catégorie</h4>
+
+                <form class="forms-sample" method="post">
+                    <div class="form-group" bis_skin_checked="1">
+                        <label for="exampleInputName1">Libelle</label>
+                        {{ form_widget(edit_form.libelle,{'attr': {'class': 'form-control'}})}}                    </div>
+
+
+                        <button type="submit" value="Modifier" class="btn btn-warning"> Modifier</button>
+                        <ul>
+                            <li>
+                                <a href="{{ path('categorie_index') }}">Retour à la liste</a>
+                            </li>
+                        </ul>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</center>
+{% endblock %}

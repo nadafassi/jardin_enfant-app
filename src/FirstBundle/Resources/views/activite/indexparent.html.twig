@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <center>
+        <div>
+            <h3>Liste des activites</h3>
+
+            <div >
+                <a href="{{ path('activite_calendrier') }}"  >Afficher le calendrier des activités
+
+                </a>
+            </div>
+        </div>
+        {% block search %}
+            <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto" method="post" style="float: right">
+
+                <div class="form-group mb-0">
+                    <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-search"></i></span>
+                        </div>
+                        <input class="form-control" placeholder="Search" type="text" name="search">
+                    </div>
+                </div>
+            </form>
+
+        {% endblock search %}
+
+        <table id="example" class="table table-striped table-bordered" style="width:80%">
+            <thead>
+            <tr>
+
+                <th>photo de l'activite</th>
+                <th>Type d'activite</th>
+                <th>Details</th>
+                <th>Date</th>
+                <th>Actions</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for activite in activites %}
+                <tr>
+
+                    <td><img src="{{asset('images/'~activite.photo)}}" width="200" height="121"> </td>
+                    <td>{{ activite.typeact }}</td>
+                    <td>{{ activite.detailles }}</td>
+                    <td>{{ activite.Date|date('Y-m-d ') }}</td>
+
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('activite_showparent', { 'id': activite.id }) }}">show</a>
+                            </li>
+
+                            <li>
+
+                                    <a href="{{ path('activite_part', { 'id': activite.id }) }}">participer</a>
+
+                            </li>
+
+
+                        </ul>
+                    </td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+
+
+
+
+
+    </center>
+{% endblock %}
